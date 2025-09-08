@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Controle de Despesas</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon"></script>
+</head>
+
+<body>
+    <main class="dashboard-container">
+        <!-- Painel de Filtros -->
+        <section class="filtros-panel">
+            <h2>Filtros</h2>
+
+            <!-- Filtro de Período -->
+            <div class="filtro-grupo">
+                <h3>Período</h3>
+                <div class="periodo-rapido">
+                    <button data-periodo="1">Último Mês</button>
+                    <button data-periodo="3">Último Trimestre</button>
+                    <button data-periodo="12">Último Ano</button>
+                </div>
+                <div class="periodo-customizado">
+                    <label>De:
+                        <input type="date" id="data-inicio">
+                    </label>
+                    <label>Até:
+                        <input type="date" id="data-fim">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Filtro de Tipos -->
+            <div class="filtro-grupo">
+                <h3>Tipos de Gasto</h3>
+                <div class="tipos-container" id="tipos-filtro">
+                    <div class="tipos-coluna">
+                        <label>
+                            <input type="checkbox" value="carro" checked> Carro
+                        </label>
+                        <label>
+                            <input type="checkbox" value="educacao" checked> Educação
+                        </label>
+                        <label>
+                            <input type="checkbox" value="familia" checked> Família
+                        </label>
+                        <label>
+                            <input type="checkbox" value="lazer" checked> Lazer
+                        </label>
+                        <label>
+                            <input type="checkbox" value="casa" checked> Casa
+                        </label>
+                    </div>
+                    <div class="tipos-coluna">
+                        <label>
+                            <input type="checkbox" value="outros" checked> Outros
+                        </label>
+                        <label>
+                            <input type="checkbox" value="saude" checked> Saúde
+                        </label>
+                        <label>
+                            <input type="checkbox" value="mercado" checked> Mercado
+                        </label>
+                        <label>
+                            <input type="checkbox" value="pessoal" checked> Pessoal
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button id="aplicar-filtros">Aplicar Filtros</button>
+        </section>
+
+        <!-- Painel de Gráficos -->
+        <section class="graficos-panel">
+            <!-- Cards de Indicadores -->
+            <div class="indicadores-container">
+                <div class="indicador-card">
+                    <h3>Total no Período</h3>
+                    <p id="total-periodo">R$ 0,00</p>
+                </div>
+                <div class="indicador-card">
+                    <h3>Média Mensal</h3>
+                    <p id="media-mensal">R$ 0,00</p>
+                </div>
+                <div class="indicador-card">
+                    <h3>Maior Gasto</h3>
+                    <p id="maior-gasto">R$ 0,00</p>
+                </div>
+                <div class="indicador-card">
+                    <h3>Gasto Mais Frequente</h3>
+                    <p id="gasto-frequente">-</p>
+                </div>
+            </div>
+
+            <!-- Gráficos -->
+            <div class="graficos-container">
+                <div class="grafico-item">
+                    <h3>Evolução de Despesas</h3>
+                    <canvas id="grafico-evolucao"></canvas>
+                </div>
+                <div class="grafico-item">
+                    <h3>Distribuição por Tipo</h3>
+                    <canvas id="grafico-tipos"></canvas>
+                </div>
+                <div class="grafico-item">
+                    <h3>Composição Mensal</h3>
+                    <canvas id="grafico-composicao"></canvas>
+                </div>
+                <div class="grafico-item">
+                    <h3>Padrão de Gastos</h3>
+                    <canvas id="grafico-padrao"></canvas>
+                </div>
+                <div class="grafico-item grafico-comparativo">
+                    <div class="grafico-header">
+                        <h3>Comparativo por Tipo</h3>
+                        <select id="tipo-comparativo">
+                            <option value="mercado">Mercado</option>
+                            <option value="casa">Casa</option>
+                            <option value="carro">Carro</option>
+                            <option value="educacao">Educação</option>
+                            <option value="familia">Família</option>
+                            <option value="lazer">Lazer</option>
+                            <option value="outros">Outros</option>
+                            <option value="saude">Saúde</option>
+                            <option value="pessoal">Pessoal</option>
+                        </select>
+                    </div>
+                    <canvas id="grafico-comparativo"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="./js/indexedDB-manager.js"></script>
+    <script src="./js/dashboard-manager.js"></script>
+</body>
+
+</html>

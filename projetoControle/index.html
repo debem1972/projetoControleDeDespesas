@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/controle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <title>Controle de despesas no cartão de crédito</title>
+</head>
+
+<body>
+    <main class="container">
+        <header class="title">
+            <h1>Controle de despesas</h1>
+        </header>
+
+        <fieldset>
+            <legend>Lançar gastos</legend>
+            <section class="inputDados">
+                <div class="entradaDados">
+                    <label for="data">Data da Compra</label>
+                    <input type="text" id="data" autocomplete="off" required>
+                </div>
+                <div class="entradaDados">
+                    <label for="descricao">Descrição</label>
+                    <input type="text" id="descricao" placeholder="...local do gasto..." required>
+                </div>
+
+                <div class="entradaDados">
+                    <label for="tipos">Tipo de gasto</label>
+                    <select name="tipos" id="tipos">
+                        <option selected disabled value="">Selecione o tipo de gasto...</option>
+                        <option value="carro">Carro</option>
+                        <option value="casa">Casa</option>
+                        <option value="educação">Educação</option>
+                        <option value="família">Família</option>
+                        <option value="lazer">Lazer</option>
+                        <option value="mercado">Mercado</option>
+                        <option value="outros">Outros</option>
+                        <option value="pessoal">Pessoal</option>
+                        <option value="saúde">Saúde</option>
+                    </select>
+                </div>
+
+                <div class="entradaDados">
+                    <label for="valor">Valor da compra</label>
+                    <input type="text" id="valor" required autocomplete="off">
+                </div>
+
+                <div class="entradaDados">
+                    <h4>Parcelado?</h4>
+                    <label for="parcelaSim">Sim</label>
+                    <input type="radio" id="parcelaSim" name="parcelas" value="sim" title="Escolha uma das opções...!">
+                    <label for="parcelaNao">Não</label>
+                    <input type="radio" id="parcelaNao" name="parcelas" value="nao" title="Escolha uma das opções...!">
+                </div>
+                <div class="entradaDados parcelamento parcelamentoNao">
+                    <label for="numberParcels">Parcelas</label>
+                    <select name="numeroParc" id="numberParcels">
+                        <option selected disabled value="">Selecione o nº de parcelas...</option>
+                        <option value="2">2 vezes</option>
+                        <option value="3">3 vezes</option>
+                        <option value="4">4 vezes</option>
+                        <option value="5">5 vezes</option>
+                        <option value="6">6 vezes</option>
+                        <option value="7">7 vezes</option>
+                        <option value="8">8 vezes</option>
+                        <option value="9">9 vezes</option>
+                        <option value="10">10 vezes</option>
+                        <option value="11">11 vezes</option>
+                        <option value="12">12 vezes</option>
+                        <option value="13">13 vezes</option>
+                        <option value="14">14 vezes</option>
+                        <option value="15">15 vezes</option>
+                        <option value="16">16 vezes</option>
+                        <option value="17">17 vezes</option>
+                        <option value="18">18 vezes</option>
+                        <option value="19">19 vezes</option>
+                        <option value="20">20 vezes</option>
+                        <option value="21">21 vezes</option>
+                        <option value="22">22 vezes</option>
+                        <option value="23">23 vezes</option>
+                        <option value="24">24 vezes</option>
+                        <option value="25">25 vezes</option>
+                        <option value="26">26 vezes</option>
+                        <option value="27">27 vezes</option>
+                        <option value="28">28 vezes</option>
+                        <option value="29">29 vezes</option>
+                        <option value="30">30 vezes</option>
+                        <option value="31">31 vezes</option>
+                        <option value="32">32 vezes</option>
+                        <option value="33">33 vezes</option>
+                        <option value="34">34 vezes</option>
+                        <option value="35">35 vezes</option>
+                        <option value="36">36 vezes</option>
+                    </select>
+                </div>
+                <div class="saidaDados">
+                    <p id="valorCompraAlert"></p>
+                    <span id="viewValorCompra"></span>
+                </div>
+                <div class="botoes-acao">
+                    <button id="cadastra" onclick="lancar()">Lançar</button>
+                    <button id="btnCalculadora" title="Calculadora">
+                        <i class="bi bi-calculator"></i>
+                    </button>
+                </div>
+            </section>
+        </fieldset>
+        <fieldset>
+            <legend>Filtrar dados</legend>
+            <div class="busca">
+                <input type="text" id="input-busca" placeholder="o que você procura?" autocomplete="off">
+            </div>
+        </fieldset>
+        <div class="content">
+            <h3 id="tituloRelatorio" class="oculto">Relatório de compras no cartão de crédito</h3>
+            <div id="cabecalhoRelat">
+                <div id="dadosWorker">
+                    <p id="name" class="oculto"></p>
+                </div>
+                <div id="dadosMesAno">
+                    <p id="monthYear" class="oculto"></p>
+                </div>
+            </div>
+
+            <section class="minhaTabela">
+                <div class="table-container">
+                    <div class="table-scroll">
+                        <table id="tabela" class="table table-fixed" width="90%" border="1">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Descrição</th>
+                                    <th>Valor</th>
+                                    <th>Parcelas</th>
+                                    <th>Valor da Parcela</th>
+                                    <th>Tipo de gasto</th>
+                                    <th>Mes da Fatura</th>
+                                    <th>Status</th>
+                                    <th>Forma pagto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="linhaOriginal" style="display: none;">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <div id="total">
+                <fieldset id="campoTotalHoras">
+                    <legend>Valor total dos gastos</legend>
+                    <div>
+                        <p id="calcTotalCompras"></p>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="botoesControle">
+            <div class="edicao">
+                <button id="editarDados" onclick="editar()">Editar tabela</button>
+                <button id="btnDeletarLinha">Deletar linhas</button>
+                <button id="btnSelecionarTodas">Selecionar Todas</button>
+                <span id="contadorSelecao">0 linha(s) selecionada(s)</span>
+            </div>
+            <button id="relatorio" onclick="geraPrompt()">Gerar relatório</button>
+            <button id="exportarDados" onclick="exportarDados()">Exportar dados</button>
+            <button id="importarDados" onclick="importarDados()">
+                Importar dados
+                <input type="file" id="inputImportacao" accept=".json" style="display: none;">
+            </button>
+            <div class="btn-dashboard">
+                <button id="btn-dashboard" disabled title="Em construção! Aguarde!">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    Dashboard
+                </button>
+            </div>
+        </div>
+        <div id="modalRelatorio" class="modal">
+            <div class="modal-content">
+                <h2>Configurar Relatório</h2>
+                <form id="formRelatorio">
+                    <div class="form-group">
+                        <label>Período:</label>
+                        <div class="periodo-group">
+                            <div>
+                                <label for="dataInicio">De:</label>
+                                <input type="month" id="dataInicio" required>
+                            </div>
+                            <div>
+                                <label for="dataFim">Até:</label>
+                                <input type="month" id="dataFim" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipos de Compra:</label>
+                        <div class="tipos-group">
+                            <label><input type="checkbox" value="carro"> Carro</label>
+                            <label><input type="checkbox" value="casa"> Casa</label>
+                            <label><input type="checkbox" value="educação"> Educação</label>
+                            <label><input type="checkbox" value="família"> Família</label>
+                            <label><input type="checkbox" value="lazer"> Lazer</label>
+                            <label><input type="checkbox" value="mercado"> Mercado</label>
+                            <label><input type="checkbox" value="outros"> Outros</label>
+                            <label><input type="checkbox" value="pessoal"> Pessoal</label>
+                            <label><input type="checkbox" value="saúde"> Saúde</label>
+                            <label><input type="checkbox" value="todos" id="checkTodos"> Selecionar Todos</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Opções:</label>
+                        <div class="opcoes-group">
+                            <label><input type="checkbox" id="agruparTipo"> Agrupar por tipo de gasto</label>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" id="btnPreview">Visualizar</button>
+                        <button type="button" id="btnGerarPDF">Gerar PDF</button>
+                        <button type="button" id="btnCancelar">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Modal da Calculadora -->
+        <div id="modalCalculadora" class="modal">
+            <div class="modal-content calculadora-modal">
+                <div class="calculadora">
+                    <div class="display">
+                        <input type="text" id="calcDisplay" readonly>
+                    </div>
+                    <div class="botoes">
+                        <button class="btn-calc btn-clear" onclick="clearCalculator()">C</button>
+                        <button class="btn-calc btn-operator" onclick="appendToDisplay('/')">÷</button>
+                        <button class="btn-calc btn-operator" onclick="appendToDisplay('*')">×</button>
+                        <button class="btn-calc btn-operator" onclick="deleteLast()">←</button>
+                        
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('7')">7</button>
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('8')">8</button>
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('9')">9</button>
+                        <button class="btn-calc btn-operator" onclick="appendToDisplay('-')">-</button>
+                        
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('4')">4</button>
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('5')">5</button>
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('6')">6</button>
+                        <button class="btn-calc btn-operator" onclick="appendToDisplay('+')">+</button>
+                        
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('1')">1</button>
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('2')">2</button>
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('3')">3</button>
+                        <button class="btn-calc btn-equals" onclick="calculateResult()" rowspan="2">=</button>
+                        
+                        <button class="btn-calc btn-number btn-zero" onclick="appendToDisplay('0')">0</button>
+                        <button class="btn-calc btn-number" onclick="appendToDisplay('.')">.</button>
+                        <button class="btn-calc btn-close" onclick="closeCalculator()">×</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./js/controleVictor.js"></script>
+    <script src="./js/filtroPesquisaVictor.js"></script>
+    <script src="./js/somaValoresVictor1a.js"></script>
+    <script src="./js/editTableVictor.js"></script>
+    <script src="./js/excluiLinhaVictor.js"></script>
+    <script src="./js/configRelatVictor.js"></script>
+    <script src="./js/indexedDB-manager.js"></script>
+    <script src="./js/importExportManager.js"></script>
+    <script src="./js/calculator.js"></script>
+</body>
+
+</html>

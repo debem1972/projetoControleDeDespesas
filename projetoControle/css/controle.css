@@ -1,0 +1,980 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.title,
+#subTitle {
+    text-align: center;
+}
+
+fieldset {
+    width: 30%;
+    margin: auto;
+    background-color: bisque;
+    box-shadow: 2px 2px 3px black;
+    margin-top: 10px;
+}
+
+.busca {
+    padding: 10px;
+}
+
+#input-busca {
+    padding-left: 10px;
+}
+
+
+
+legend {
+    font-size: 1.2em;
+    font-style: bold;
+    margin-left: 8px;
+}
+
+.inputDados {
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;
+    align-items: center;*/
+    gap: 10px;
+}
+
+.entradaDados {
+    margin-left: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+#descricao {
+    width: 80%;
+}
+
+#tipos {
+    width: 35%;
+}
+
+#valor {
+    width: 100px;
+}
+
+#numberParcels {
+    width: 38%;
+}
+
+/*-----------------------------------------------------------------*/
+.parcelamentoNao {
+    display: none;
+}
+
+.parcelamentoSim {
+    display: block;
+}
+
+/*-----------------------------------------------------------------*/
+
+.saidaDados {
+    /*border: 1px solid black;*/
+    margin-left: 5px;
+}
+
+span {
+    font-style: italic;
+    font-weight: bold;
+}
+
+#cadastra {
+    width: 20%;
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    box-shadow: 2px 2px 3px black;
+    border-radius: 5px;
+    border: none;
+}
+
+.minhaTabela {
+    /*border: 1px solid black;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+thead>tr>th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 2;
+    /* Garante que o cabeçalho fique acima do conteúdo */
+}
+
+/* Estilo para a tabela com cabeçalho fixo */
+.table-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.table-scroll {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.table-fixed {
+    display: grid;
+    grid-template-columns: minmax(80px, 1fr) minmax(150px, 2fr) minmax(100px, 1fr) minmax(100px, 1fr) minmax(120px, 1fr) minmax(150px, 2fr) minmax(120px, 1fr) minmax(100px, 1fr) minmax(100px, 1fr);
+    width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr {
+    display: contents;
+}
+
+.table-fixed th,
+.table-fixed td {
+    padding: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table-fixed th {
+    position: sticky;
+    top: 0;
+    background: #212529;
+    color: white;
+    z-index: 2;
+}
+
+.table-fixed tbody tr td {
+    background-color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table-fixed tbody tr:nth-child(even) td {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-fixed tbody tr:hover td {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+
+#tituloRelatorio {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#cabecalhoRelat {
+    /*border: 1px solid green;*/
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dadosWorker {
+    /*border: 2px solid blue;*/
+    width: 50%;
+    height: 20px;
+}
+
+#name {
+    float: right;
+    margin-right: 20px;
+}
+
+#dadosMesAno {
+    /*border: 1px solid red;*/
+    width: 50%;
+    height: 20px;
+}
+
+#monthYear {
+    float: left;
+    margin-left: 20px;
+}
+
+
+
+/*#relatorio {
+    margin-top: 25px;
+    margin-left: 30px;
+}*/
+
+.tituloVisivel {
+    display: block;
+}
+
+.oculto {
+    display: none;
+}
+
+/*#tabela {
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 20px;
+}*/
+
+#calcTotalCompras {
+    margin-left: 12px;
+    font-size: 1.1em;
+}
+
+
+
+.botoesControle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.botoesControle button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edicao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#editarDados {
+    background-color: #2196F3;
+}
+
+#editarDados:hover {
+    background-color: #1976D2;
+}
+
+#finalizaEdit {
+    background-color: #FF9800;
+}
+
+#finalizaEdit:hover {
+    background-color: #F57C00;
+}
+
+#btnDeletarLinha {
+    background-color: #f44336;
+}
+
+#btnDeletarLinha:hover {
+    background-color: #d32f2f;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7);
+    }
+    
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(244, 67, 54, 0);
+    }
+    
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(244, 67, 54, 0);
+    }
+}
+
+.btn-pulse {
+    animation: pulse 1.5s infinite;
+}
+
+#btnDeletarLinha.btn-pulse:hover {
+    animation: none;
+}
+
+#btnSelecionarTodas {
+    background-color: #607D8B;
+}
+
+#btnSelecionarTodas:hover {
+    background-color: #455A64;
+}
+
+#relatorio {
+    background-color: #9C27B0;
+}
+
+#relatorio:hover {
+    background-color: #7B1FA2;
+}
+
+#exportarDados {
+    background-color: #4CAF50;
+}
+
+#exportarDados:hover {
+    background-color: #388E3C;
+}
+
+#importarDados {
+    background-color: #00BCD4;
+}
+
+#importarDados:hover {
+    background-color: #0097A7;
+}
+
+#contadorSelecao {
+    margin-left: 10px;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ddd;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    height: 38px;
+    /* Mesma altura dos botões considerando padding */
+    box-sizing: border-box;
+}
+
+.feedback-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.feedback-toast.success {
+    background-color: #4CAF50;
+}
+
+.feedback-toast.error {
+    background-color: #f44336;
+}
+
+.feedback-toast.show {
+    opacity: 1;
+}
+
+.linha-selecionada {
+    background-color: #e7eb14 !important;
+    color: rgb(235, 8, 8);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+/*.linha-hover:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}*/
+
+tbody tr {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Estilos para o modal de relatório */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.periodo-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.periodo-group div {
+    flex: 1;
+}
+
+.periodo-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.tipos-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.tipos-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+}
+
+.opcoes-group {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#btnPreview {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#btnGerarPDF {
+    background-color: #2196F3;
+    color: white;
+}
+
+#btnCancelar {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Estilos para preview do relatório */
+.preview-mode .content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+.preview-mode .page-number {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.grupo-tipo {
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.grupo-tipo h3 {
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 5px;
+}
+
+.grupo-tipo .subtotal {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+/* Estilos para preview do relatório em A4 paisagem */
+.preview-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.preview-a4 {
+    background-color: white;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 15mm;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transform: scale(0.7);
+    transform-origin: top center;
+    margin: 20px auto;
+}
+
+/* Ajusta a posição dos controles para não sobrepor a miniatura */
+.preview-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1001;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+}
+
+.preview-controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+
+.preview-controls .btn-gerar-pdf {
+    background-color: #2196F3;
+}
+
+.preview-controls .btn-fechar {
+    background-color: #f44336;
+}
+
+/* Ajustes para o conteúdo do relatório */
+.preview-a4 .content {
+    width: 100%;
+    background-color: white;
+}
+
+.preview-a4 .table-container {
+    position: relative;
+    height: auto;
+    overflow: visible;
+}
+
+.preview-a4 .table-scroll {
+    height: auto;
+    overflow: visible;
+}
+
+.preview-a4 table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.preview-a4 th,
+.preview-a4 td {
+    border: 1px solid #333;
+    padding: 4px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.preview-a4 th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.preview-a4 .grupo-tipo {
+    margin-bottom: 20px;
+}
+
+.preview-a4 .page-number {
+    position: fixed;
+    bottom: 10mm;
+    right: 10mm;
+    font-size: 10px;
+    color: #666;
+}
+
+/* Ajuste para o cabeçalho do relatório */
+.preview-a4 #tituloRelatorio {
+    font-size: 16px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.preview-a4 #cabecalhoRelat {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-a4 #dadosWorker,
+.preview-a4 #dadosMesAno {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.preview-a4 #dadosWorker {
+    text-align: left;
+}
+
+.preview-a4 #dadosMesAno {
+    text-align: right;
+}
+
+/* Ajuste para o total */
+.preview-a4 #total {
+    margin-top: 15px;
+    border-top: 2px solid #ddd;
+    padding-top: 10px;
+}
+
+.preview-a4 #campoTotalHoras {
+    border: none;
+    padding: 0;
+}
+
+.preview-a4 #calcTotalCompras {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.btn-dashboard {
+    text-decoration: none;
+}
+
+#btn-dashboard {
+    background-color: #6f42c1;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#btn-dashboard:hover {
+    background-color: #5a32a3;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#btn-dashboard i {
+    font-size: 1.2em;
+}
+
+#btn-dashboard:disabled {
+    background-color: #9e9e9e;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+#btn-dashboard:disabled:hover {
+    background-color: #9e9e9e;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Estilos para os botões de ação */
+.botoes-acao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    gap: 10px;
+}
+
+#btnCalculadora {
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 3px black;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+#btnCalculadora:hover {
+    background-color: #F57C00;
+}
+
+#btnCalculadora i {
+    font-size: 1.2em;
+}
+
+/* Estilos para a calculadora */
+.calculadora-modal {
+    width: 320px;
+    padding: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.calculadora {
+    background-color: #2c3e50;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.display {
+    margin-bottom: 15px;
+}
+
+#calcDisplay {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    text-align: right;
+    padding: 0 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #34495e;
+    color: white;
+    box-sizing: border-box;
+}
+
+.botoes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn-calc {
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-calc:hover {
+    transform: scale(1.05);
+}
+
+.btn-calc:active {
+    transform: scale(0.95);
+}
+
+.btn-number {
+    background-color: #95a5a6;
+    color: #2c3e50;
+}
+
+.btn-number:hover {
+    background-color: #bdc3c7;
+}
+
+.btn-operator {
+    background-color: #e67e22;
+    color: white;
+}
+
+.btn-operator:hover {
+    background-color: #d35400;
+}
+
+.btn-equals {
+    background-color: #27ae60;
+    color: white;
+    grid-row: span 2;
+}
+
+.btn-equals:hover {
+    background-color: #229954;
+}
+
+.btn-clear {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-clear:hover {
+    background-color: #c0392b;
+}
+
+.btn-close {
+    background-color: #7f8c8d;
+    color: white;
+}
+
+.btn-close:hover {
+    background-color: #95a5a6;
+}
+
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* Estilos para impressão */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 15mm;
+    }
+    
+    body {
+        font-size: 12px;
+        line-height: 1.3;
+    }
+    
+    .content {
+        width: 100%;
+        max-width: none;
+    }
+    
+    table {
+        display: table !important;
+        width: 100%;
+        border-collapse: collapse;
+        page-break-inside: auto;
+    }
+    
+    th, td {
+        padding: 4px;
+        font-size: 10px;
+        border: 1px solid #000;
+        word-wrap: break-word;
+        page-break-inside: avoid;
+    }
+    
+    th {
+        background-color: #f0f0f0 !important;
+        font-weight: bold;
+        page-break-after: avoid;
+    }
+    
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    
+    thead {
+        display: table-header-group;
+    }
+    
+    tbody {
+        display: table-row-group;
+    }
+    
+    #tituloRelatorio {
+        font-size: 16px;
+        margin-bottom: 10px;
+        page-break-after: avoid;
+    }
+    
+    #cabecalhoRelat {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 12px;
+        page-break-after: avoid;
+    }
+    
+    #calcTotalCompras {
+        font-size: 12px;
+        font-weight: bold;
+        text-align: right;
+        page-break-before: avoid;
+    }
+    
+    .botoesControle,
+    .modal,
+    .preview-controls,
+    .table-container,
+    .table-scroll {
+        display: none !important;
+    }
+    
+    .page-break {
+        page-break-before: always;
+    }
+    
+    .page-break-after {
+        page-break-after: always;
+    }
+    
+    /* Força quebra de página em elementos específicos */
+    tr.page-break-after {
+        page-break-after: always !important;
+    }
+}
