@@ -885,6 +885,8 @@ tbody tr:hover {
     grid-column: span 2;
 }
 
+
+
 /* Estilos para impressão */
 @media print {
     @page {

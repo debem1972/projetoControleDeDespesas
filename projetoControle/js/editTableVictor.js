@@ -7,7 +7,7 @@ function editar() {
 
     if (!modoEdicao) {
         // Confirma com o usuário antes de habilitar a edição
-        const confirma = confirm("ATENÇÃO: Mantenha os formatos dos dados conforme os originais!\n\nExemplos:\nData: DD/MM/AAAA\nValor: 0,00\nParcelas: número\nTipo: conforme lista original\nMês Fatura: MM/AAAA\nStatus: Pago ou Pendente");
+        const confirma = confirm("ATENÇÃO: Mantenha os formatos dos dados conforme os originais!\n\nExemplos:\nData: DD/MM/AAAA\nValor: 0,00\nParcelas: número\nTipo: conforme lista original\nMês Fatura: MM/AAAA\nStatus: 1d1 ou 2d10");
 
         if (confirma) {
             modoEdicao = true;
@@ -24,15 +24,22 @@ function habilitarEdicao() {
     const tbody = document.querySelector('#tabela tbody');
     const linhas = tbody.querySelectorAll('tr:not(#linhaOriginal)');
 
-    linhas.forEach(linha => {
-        linha.querySelectorAll('td').forEach((celula, index) => {
-            const valorOriginal = celula.innerText;
-            celula.setAttribute('data-valor-original', valorOriginal);
-            celula.contentEditable = true;
-            celula.style.cursor = 'pointer';
-            celula.style.backgroundColor = '#f0f0f0';
-        });
-    });
+    // Processa as linhas de forma assíncrona para evitar travamento
+    let index = 0;
+    function processarLinha() {
+        if (index < linhas.length) {
+            const linha = linhas[index];
+            linha.querySelectorAll('td').forEach(celula => {
+                celula.contentEditable = true;
+                celula.style.cursor = 'pointer';
+                celula.style.backgroundColor = '#f0f0f0';
+            });
+            index++;
+            // Processa a próxima linha no próximo ciclo do event loop
+            setTimeout(processarLinha, 0);
+        }
+    }
+    processarLinha();
 }
 
 // Função para finalizar a edição e salvar as alterações
@@ -64,13 +71,12 @@ async function finalizarEdicao() {
             await updateExpense(despesaAtualizada);
         }
 
-        // Desabilita a edição
+        // Desabilita a edição de forma otimizada
         linhas.forEach(linha => {
             linha.querySelectorAll('td').forEach(celula => {
                 celula.contentEditable = false;
                 celula.style.cursor = 'default';
                 celula.style.backgroundColor = '';
-                celula.removeAttribute('data-valor-original');
             });
         });
 
