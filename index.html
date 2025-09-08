@@ -283,6 +283,16 @@
     <script src="./js/indexedDB-manager.js"></script>
     <script src="./js/importExportManager.js"></script>
     <script src="./js/calculator.js"></script>
+    <script>
+        // Detecta se é mobile e mostra aviso
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        }
+        
+        if (isMobile()) {
+            alert("📱 Esta aplicação funciona melhor em um PC, pois foi projetada para desktop!");
+        }
+    </script>
 </body>
 
 </html>

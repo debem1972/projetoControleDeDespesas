@@ -73,7 +73,7 @@ Um sistema web completo e moderno para controle de despesas pessoais no cartão 
 
 ```
 projetoControleDeDespesas/
-├── projetoControle/
+├──_
 │   ├── css/
 │   │   ├── controle.css          # Estilos principais
 │   │   └── dashboard.css         # Estilos do dashboard
