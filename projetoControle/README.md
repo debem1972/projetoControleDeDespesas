@@ -98,7 +98,7 @@ projetoControleDeDespesas/
 ### Instalação
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/projetoControleDeDespesas.git
+git clone https://github.com/debem1972/projetoControleDeDespesas.git
 ```
 
 2. Navegue até o diretório:
@@ -214,7 +214,7 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 👨‍💻 Autor
 
-**Desenvolvedor Fullstack Sênior**
+**Desenvolvedor Fullstack Estudante**
 - Especialista em tecnologias web modernas
 - Foco em código limpo e experiência do usuário
 - Arquitetura modular e escalável
@@ -222,9 +222,9 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 ## 📞 Suporte
 
 Para suporte e dúvidas:
-- Abra uma [Issue](https://github.com/seu-usuario/projetoControleDeDespesas/issues)
+- Abra uma [Issue](https://github.com/debem1972/projetoControleDeDespesas/issues)
 - Consulte a documentação
-- Entre em contato via email
+- Entre em contato via email: **danielbemficadev@gmail.com**
 
 ---
 
