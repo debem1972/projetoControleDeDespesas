@@ -66,8 +66,8 @@ Um sistema web completo e moderno para controle de despesas pessoais no cartão 
 
 ### Arquitetura
 - **Modular** - Código organizado em módulos especializados
-- **Responsiva** - Adaptável a diferentes tamanhos de tela
-- **Progressive Web App Ready** - Preparado para funcionalidades PWA
+- **Responsividade** - Exclusivo para utilização em desktop.
+
 
 ## 📁 Estrutura do Projeto
 
