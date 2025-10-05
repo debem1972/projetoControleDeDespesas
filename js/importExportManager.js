@@ -7,11 +7,20 @@ async function exportarDados() {
         // Cria um objeto Blob com os dados
         const blob = new Blob([JSON.stringify(despesas, null, 2)], { type: 'application/json' });
 
+        // Gera nome do arquivo com data e hora
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const fileName = `despesas${day}${month}${year}-${hours}-${minutes}.json`;
+
         // Cria um link para download
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'despesas.json';
+        a.download = fileName;
 
         // Adiciona o link ao documento e simula o clique
         document.body.appendChild(a);
