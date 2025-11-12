@@ -114,6 +114,9 @@
             <legend>Filtrar dados</legend>
             <div class="busca">
                 <input type="text" id="input-busca" placeholder="o que você procura?" autocomplete="off">
+                <button id="btnLimparBusca" title="Limpar busca">
+                    <i class="bi bi-eraser-fill"></i>
+                </button>
             </div>
         </fieldset>
         <div class="content">
@@ -236,7 +239,7 @@
                 </form>
             </div>
         </div>
-        
+
         <!-- Modal da Calculadora -->
         <div id="modalCalculadora" class="modal">
             <div class="modal-content calculadora-modal">
@@ -249,22 +252,22 @@
                         <button class="btn-calc btn-operator" onclick="appendToDisplay('/')">÷</button>
                         <button class="btn-calc btn-operator" onclick="appendToDisplay('*')">×</button>
                         <button class="btn-calc btn-operator" onclick="deleteLast()">←</button>
-                        
+
                         <button class="btn-calc btn-number" onclick="appendToDisplay('7')">7</button>
                         <button class="btn-calc btn-number" onclick="appendToDisplay('8')">8</button>
                         <button class="btn-calc btn-number" onclick="appendToDisplay('9')">9</button>
                         <button class="btn-calc btn-operator" onclick="appendToDisplay('-')">-</button>
-                        
+
                         <button class="btn-calc btn-number" onclick="appendToDisplay('4')">4</button>
                         <button class="btn-calc btn-number" onclick="appendToDisplay('5')">5</button>
                         <button class="btn-calc btn-number" onclick="appendToDisplay('6')">6</button>
                         <button class="btn-calc btn-operator" onclick="appendToDisplay('+')">+</button>
-                        
+
                         <button class="btn-calc btn-number" onclick="appendToDisplay('1')">1</button>
                         <button class="btn-calc btn-number" onclick="appendToDisplay('2')">2</button>
                         <button class="btn-calc btn-number" onclick="appendToDisplay('3')">3</button>
                         <button class="btn-calc btn-equals" onclick="calculateResult()" rowspan="2">=</button>
-                        
+
                         <button class="btn-calc btn-number btn-zero" onclick="appendToDisplay('0')">0</button>
                         <button class="btn-calc btn-number" onclick="appendToDisplay('.')">.</button>
                         <button class="btn-calc btn-close" onclick="closeCalculator()">×</button>
@@ -288,7 +291,7 @@
         function isMobile() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
         }
-        
+
         if (isMobile()) {
             alert("📱 Esta aplicação funciona melhor em um PC, pois foi projetada para desktop!");
         }

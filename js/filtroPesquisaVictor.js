@@ -1,6 +1,7 @@
 // Configurando o input de filtro e busca
 const input_busca = document.querySelector('#input-busca');
 const tabela_horas = document.querySelector('#tabela');
+const btnLimparBusca = document.querySelector('#btnLimparBusca');
 
 input_busca.addEventListener('keyup', function () {
     // Processa os termos de busca, removendo espaços extras e filtrando termos vazios
@@ -114,3 +115,22 @@ function carregarDadosIniciais() {
 
 // Carrega os dados quando a página é carregada
 document.addEventListener('DOMContentLoaded', carregarDadosIniciais);
+
+// Função para limpar busca
+function limparBusca() {
+    input_busca.value = '';
+    getAllExpenses().then(despesas => {
+        preencherTabela(despesas);
+        somaComprasTotal();
+    });
+}
+
+// Funcionalidade do botão limpar busca
+btnLimparBusca.addEventListener('click', limparBusca);
+
+// Limpar busca ao pressionar ESC no input
+input_busca.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        limparBusca();
+    }
+});
